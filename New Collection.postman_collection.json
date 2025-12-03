@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "fd2076af-9654-40fd-8794-c61fafc4e1f0",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45601064",
+		"_collection_link": "https://ahmedehab-8281128.postman.co/workspace/Ahmed-Ehab's-Workspace~70299fd2-78f3-499d-82df-5bbd70fb57a1/collection/45601064-fd2076af-9654-40fd-8794-c61fafc4e1f0?action=share&source=collection_link&creator=45601064"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7067/api/Accounts/search?query=test",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7067",
+					"path": [
+						"api",
+						"Accounts",
+						"search"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "test"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"journalDate\": \"2025-12-02T10:30:00\",\r\n  \"journalDescription\": \"ppp\",\r\n  \"totalDebit\": 1000,\r\n  \"totalCredit\": 1000,\r\n  \"details\": [\r\n    {\r\n      \"accountId\": \"cd031342-691f-4379-8986-58d6b1c4426c\",\r\n      \"debitAmount\": 1000,\r\n      \"creditAmount\": 0,\r\n      \"detailStatement\": \"مدين على الحساب الأول\"\r\n    },\r\n    {\r\n      \"accountId\": \"c27bc194-d028-4625-ae7f-7bd7a0e9f2e0\",\r\n      \"debitAmount\": 0,\r\n      \"creditAmount\": 500,\r\n      \"detailStatement\": \"مدين على الحساب الثاني\"\r\n    },\r\n    {\r\n      \"accountId\": \"c27bc194-d028-4625-ae7f-7bd7a0e9f2e0\",\r\n      \"debitAmount\": 0,\r\n      \"creditAmount\": 500,\r\n      \"detailStatement\": \"دائن على الحساب الثالث\"\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7067/api/Journal/save",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7067",
+					"path": [
+						"api",
+						"Journal",
+						"save"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
