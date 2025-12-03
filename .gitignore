@@ -1,0 +1,34 @@
+# =========================================
+# Angular Project (Cleint/fCarePlusCleint)
+# =========================================
+Cleint/fCarePlusCleint/node_modules/
+Cleint/fCarePlusCleint/dist/
+Cleint/fCarePlusCleint/.angular/
+Cleint/fCarePlusCleint/npm-debug.log
+Cleint/fCarePlusCleint/yarn-error.log
+Cleint/fCarePlusCleint/package-lock.json
+Cleint/fCarePlusCleint/yarn.lock
+Cleint/fCarePlusCleint/.vscode/
+
+
+
+
+# =========================================
+# .NET Project (API/fCarePlus.API)
+# =========================================
+API/fCarePlus.API/bin/
+API/fCarePlus.API/obj/
+API/fCarePlus.API/.vs/
+API/fCarePlus.API/*.user
+API/fCarePlus.API/*.suo
+API/fCarePlus.API/*.cache
+API/fCarePlus.API/*.log
+
+# EF & Databases
+API/fCarePlus.API/Migrations/
+API/fCarePlus.API/*.db
+API/fCarePlus.API/*.sqlite
+
+# Editor / System
+.vscode/
+*.DS_Store

@@ -1,0 +1,34 @@
+[
+  {
+    "ContainingType": "fCarePlus.API.Controllers.AccountsController",
+    "Method": "Search",
+    "RelativePath": "api/Accounts/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "fCarePlus.API.Controllers.JournalVoucherController",
+    "Method": "SaveVoucher",
+    "RelativePath": "api/journal/save",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "fCarePlus.API.DTOs.JournalVoucherInputModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

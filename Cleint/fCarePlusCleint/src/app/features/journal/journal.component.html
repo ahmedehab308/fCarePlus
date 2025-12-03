@@ -1,0 +1,125 @@
+<form [formGroup]="voucherForm" (ngSubmit)="saveVoucher()">
+  <div class="voucher-header">
+    <div class="form-group">
+      <label for="JournalDate">تاريخ القيد:</label>
+      <input id="JournalDate" type="date" formControlName="JournalDate" required>
+      <div *ngIf="voucherForm.get('JournalDate')?.invalid && voucherForm.get('JournalDate')?.touched" class="error-message" style="color: red;">
+        التاريخ مطلوب.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="JournalDescription">وصف القيد العام:</label>
+      <textarea id="JournalDescription" formControlName="JournalDescription" rows="3" required></textarea>
+      <div *ngIf="voucherForm.get('JournalDescription')?.invalid && voucherForm.get('JournalDescription')?.touched" class="error-message" style="color: red;">
+        الوصف مطلوب.
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h3>تفاصيل القيد</h3>
+
+  <div formArrayName="Details" class="table-responsive">
+    <table class="table details-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>رقم/اسم الحساب</th>
+          <th>مدين (Debit)</th>
+          <th>دائن (Credit)</th>
+          <th>بيان تفصيلي</th>
+          <th>إجراء</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let detailRow of detailsArray.controls; let i = index" [formGroup]="detailRow">
+
+          <td>{{ i + 1 }}</td>
+          <td >
+            <input
+              type="text"
+              formControlName="AccountDisplay"
+              placeholder="ابحث عن حساب (اسم أو رقم)"
+              required
+              (input)="handleSearchInput($event, i)" >
+            <input type="hidden" formControlName="AccountId">
+            <div class="autocomplete-dropdown" *ngIf="suggestions[i] && suggestions[i].length > 0" style="position: absolute; z-index: 10; background-color: #eeeeee; height: 150px; overflow-y: auto; border: 1px solid #ccc; width: 300px;">
+              <div
+                  *ngFor="let account of suggestions[i]"
+                  (click)="onAccountSelected(account, i)"
+                  class="autocomplete-item "
+              >{{ account.fullAccountName }} </div>
+            </div>
+
+            <div *ngIf="detailRow.get('AccountDisplay')?.invalid && detailRow.get('AccountDisplay')?.touched" class="error-message" style="color: red;">
+                يجب اختيار حساب.
+            </div>
+          </td>
+          <td>
+            <input type="number"  formControlName="DebitAmount" min="0">
+            <div *ngIf="detailRow.get('DebitAmount')?.hasError('min') && detailRow.get('DebitAmount')?.touched"
+              class="error-message " style="color: red;">
+              لا يمكن إدخال رقم سالب.
+            </div>
+          </td>
+          <td>
+            <input type="number" formControlName="CreditAmount" min="0">
+            <div *ngIf="detailRow.get('CreditAmount')?.hasError('min') && detailRow.get('CreditAmount')?.touched"
+              class="error-message " style="color: red;">
+              لا يمكن إدخال رقم سالب.
+          </div>
+          </td>
+          <td>
+            <input type="text" formControlName="DetailStatement" placeholder="بيان تفصيلي (اختياري)">
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="removeRow(i)"
+              [disabled]="detailsArray.length === 1"
+              title="حذف الصف">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="voucher-footer">
+    <div class="totals-section">
+      <div>
+        <label>الإجمالي المدين:</label>
+        <input type="text" formControlName="TotalDebit" readonly class="total-debit">
+      </div>
+      <div>
+        <label>الإجمالي الدائن:</label>
+        <input type="text" formControlName="TotalCredit" readonly class="total-credit">
+      </div>
+      <div [class.difference-error]="voucherForm.get('Difference')?.value !== 0">
+        <label>الفرق (يجب أن يكون صفر):</label>
+        <input type="text" formControlName="Difference" readonly class="difference">
+      </div>
+    </div>
+
+    <div class="actions-section">
+      <button type="button" (click)="addRow()" class="btn-add">
+        ➕ إضافة صف جديد
+      </button>
+      <button type="submit" [disabled]="voucherForm.invalid "
+        class="btn-save">
+        💾 حفظ القيد
+      </button>
+      <!-- <button type="submit"
+        class="btn-save">
+        💾 حفظ القيد
+      </button> -->
+    </div>
+  </div>
+
+</form>
+
+

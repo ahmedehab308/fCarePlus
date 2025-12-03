@@ -1,0 +1,6 @@
+@fCarePlus.API_HostAddress = http://localhost:5063
+
+GET {{fCarePlus.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
